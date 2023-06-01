@@ -1,0 +1,14 @@
+{
+    "server": {
+        "env": "development",
+        "isDevelopment": true,
+        "logger": {
+            "level": "debug"
+        }
+    },
+    "notifications": {
+        "invitation": {
+            "replyEmail": "no-reply@clinifyhealth.com"
+        }
+    }
+}

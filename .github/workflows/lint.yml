@@ -1,0 +1,15 @@
+name: Eslint Check
+on:
+  push:
+    branches: [main,develop]
+  pull_request:
+    branches: [main,develop]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: npm install
+    - name: Run ESLint
+      run: npm run eslint

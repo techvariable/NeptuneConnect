@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Neptune Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+    <link rel="stylesheet" href="public/assets/css/style.css" />
+    <link rel="stylesheet" href="public/components/build/neptune.css" />
+
+    <script type="module" src="/public/components/build/neptune.esm.js"></script>
+    <script nomodule src="/public/components/build/neptune.js"></script>
+  </head>
+
+  <body
+    class="selection:bg-indigo-200 selection:text-violet-800 relative font-roboto h-screen bg-white"
+  >
+    <fluid-container>
+      <nav-bar stringifieduser="<%= user %>" imgurl="<%=imgurl%>"></nav-bar>
+      <main class="container mx-auto mt-4">
+        <div class="w-full md:flex justify-center gap-4">
+          <aside class="md:w-80 md:mb-4" aria-label="Sidebar">
+            <navigators-component
+              navigators="<%=JSON.stringify(navigators) %>"
+              permissions="<%= JSON.stringify(permissions) %>"
+            ></navigators-component>
+          </aside>
+          <div class="flex-grow">
+            <basic-settings></basic-settings>
+          </div>
+        </div>
+      </main>
+    </fluid-container>
+  </body>
+</html>

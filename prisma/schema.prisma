@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.db"
+}
+
+model Permission {
+  id          Int        @id @default(autoincrement())
+  roleName    String     @unique
+  permissions String
+  userRel     UserRole[]
+  persistant  Boolean    @default(false)
+}
+
+model User {
+  id            Int        @id @default(autoincrement())
+  email         String     @unique
+  name          String
+  password      String
+  date          DateTime
+  persistant    Boolean    @default(false)
+
+  keysRel       APIKey[]
+  queriesRel    QueryLog[]
+  permissionRel UserRole[]
+  saveQueryRel  SaveQuery[]
+}
+
+model UserRole {
+  id         Int        @id @default(autoincrement())
+  userId     Int
+  roleId     Int
+  permission Permission @relation(fields: [roleId], references: [id])
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Invitation {
+  invitationId   Int    @id @default(autoincrement())
+  recipientEmail String @unique
+  hashedPassKey  String @unique
+}
+
+model ResetPassword {
+  resetPasswordId Int    @id @default(autoincrement())
+  recipientEmail  String @unique
+  hashedPassKey   String @unique
+}
+
+model APIKey {
+  apiId  Int    @id @default(autoincrement())
+  apiKey String @unique
+  userId Int    @unique
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model QueryLog {
+  id              Int      @id @default(autoincrement())
+  queryText       String
+  queryParameter  String   @default("")
+  queryResult     String
+  queryStatus     Int
+  isCustomQuery   Boolean  @default(false)
+  timeOfExecution DateTime @default(now())
+  timeTaken       Int
+  ownerId         Int
+  user            User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}
+
+model SaveQuery {
+  id              Int      @id @default(autoincrement())
+  queryTitle      String   @default("")
+  queryText       String
+  queryParameter  String   @default("")
+  ownerId         Int
+  user            User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}
