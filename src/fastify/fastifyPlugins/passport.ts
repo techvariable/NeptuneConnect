@@ -41,7 +41,7 @@ export default fp(async (fastify) => {
     cookie: {
       maxAge: 60 * 60 * 100
     },
-    key: fs.readFileSync(path.join(process.cwd(), 'secret-key'))
+    key: fs.readFileSync(path.join(process.cwd(), 'not-so-secret-key'))
   })
   await fastify.register(fastifyPassport.initialize())
   await fastify.register(fastifyPassport.secureSession())
