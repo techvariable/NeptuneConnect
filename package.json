@@ -53,6 +53,7 @@
     "fastify-plugin": "^4.0.0",
     "gremlin": "^3.6.1",
     "gremlin-aws-sigv4": "^3.6.1",
+    "mailgun.js": "^9.0.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "prisma": "^4.6.1",

@@ -4,7 +4,7 @@ import { type ResetPassword } from '@prisma/client'
 import { type TResetPassword } from '../../ts/types/user.type'
 
 export default fp(async (fastify, opts) => {
-  async function checkIfPasswordChangeRequested (email: string): Promise<boolean> {
+  async function checkIfPasswordChangeRequested(email: string): Promise<boolean> {
     const invitedPerson = await fastify.prisma.resetPassword.findUnique({
       where: {
         recipientEmail: email
@@ -17,11 +17,11 @@ export default fp(async (fastify, opts) => {
     return invitedPerson != null
   }
 
-  async function addPasswordChangeRequest (data: TResetPassword): Promise<ResetPassword> {
+  async function addPasswordChangeRequest(data: TResetPassword): Promise<ResetPassword> {
     return await fastify.prisma.resetPassword.create({ data })
   }
 
-  async function deletePasswordChangeRequest (recipientEmail: string): Promise<ResetPassword> {
+  async function deletePasswordChangeRequest(recipientEmail: string): Promise<ResetPassword> {
     return await fastify.prisma.resetPassword.delete({
       where: {
         recipientEmail
@@ -29,7 +29,7 @@ export default fp(async (fastify, opts) => {
     })
   }
 
-  async function getPasswordChangeRequestFromInditationId (resetId: string): Promise<{
+  async function getPasswordChangeRequestFromInditationId(resetId: string): Promise<{
     recipientEmail: string
   } | null> {
     return await fastify.prisma.resetPassword.findUnique({

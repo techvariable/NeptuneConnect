@@ -88,7 +88,10 @@ const users: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promis
 
       try {
         if (await fastify.findUserByEmailId(email)) {
-          await fastify.deletePasswordChangeRequest(email)
+          const isPasswordChangeRequested = await fastify.checkIfPasswordChangeRequested(email)
+          if (isPasswordChangeRequested) {
+            await fastify.deletePasswordChangeRequest(email)
+          }
           await fastify.addPasswordChangeRequest({
             recipientEmail: email,
             hashedPassKey: key

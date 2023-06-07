@@ -1,7 +1,7 @@
 import { Type } from '@sinclair/typebox'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-function StringEnum<T extends string[]> (values: [...T]) {
+function StringEnum<T extends string[]>(values: [...T]) {
   return Type.Unsafe<T[number]>({ type: 'string', enum: values })
 }
 
@@ -12,7 +12,7 @@ export const SEnv = Type.Object({
 
   APP_URL: Type.String({ format: 'uri' }),
 
-  EMAIL_PROVIDER: StringEnum(['sendgrid']),
+  EMAIL_PROVIDER: StringEnum(['sendgrid', 'mailgun']),
   EMAIL_PROVIDER_API_KEY: Type.String(),
   EMAIL_PROVIDER_REPLY_EMAIL: Type.String({ format: 'email' }),
 
