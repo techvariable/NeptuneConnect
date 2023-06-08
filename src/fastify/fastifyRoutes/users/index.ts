@@ -34,7 +34,8 @@ const users: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promis
         user: JSON.stringify({ name: request.user?.name, email: request.user?.email }),
         limit,
         offset,
-        permissions: request.user?.permissions
+        permissions: request.user?.permissions,
+        mode: process.env.MODE
       })
     }
   )
@@ -84,7 +85,8 @@ const users: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promis
         combinedpermissions,
         user: JSON.stringify({ name: request.user?.name, email: request.user?.email }),
         useremail: user.email,
-        details
+        details,
+        mode: process.env.MODE
       })
     }
   )

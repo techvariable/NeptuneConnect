@@ -19,9 +19,12 @@
 </head>
 
 <body class="selection:bg-indigo-200 selection:text-violet-800 relative font-roboto w-100 h-screen bg-white">
+  <% if(mode==='demo'){ %>
+    <banner-component></banner-component>
+ <% } %>
   <fluid-container>
     <nav-bar stringifieduser="<%= user %>" imgurl="<%=imgurl%>"></nav-bar>
-    <editor-page url="<%= url %>"></editor-page>
+    <editor-page url="<%= url %>" permissions="<%= JSON.stringify(permissions) %>"></editor-page>
   <fluid-container>
     <script src="/public/scripts/settingScript.js"></script>
 </body>

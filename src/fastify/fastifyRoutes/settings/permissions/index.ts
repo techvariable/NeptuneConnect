@@ -28,7 +28,8 @@ const permissions: FastifyPluginAsync = async (fastify: FastifyInstance, opts): 
         url: `${process.env.APP_URL}api/permissions`,
         imgurl: `${process.env.APP_URL}`,
         user: JSON.stringify({ name: request.user?.name, email: request.user?.email }),
-        permissions: request.user?.permissions
+        permissions: request.user?.permissions,
+        mode: process.env.MODE
       })
     }
   )

@@ -125,9 +125,6 @@ const editor: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promi
           request.params.nodeLabel,
           request.body
         )
-
-        console.log([query, queryParameters])
-
         return {
           query,
           queryParameters

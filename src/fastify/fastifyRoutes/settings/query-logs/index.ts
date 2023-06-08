@@ -25,7 +25,8 @@ const logs: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promise
         imgurl: `${process.env.APP_URL}`,
         navigators: selectedNavigators,
         user: JSON.stringify({ name: request.user?.name, email: request.user?.email }),
-        permissions: request.user?.permissions
+        permissions: request.user?.permissions,
+        mode: process.env.MODE
       })
     }
   )
