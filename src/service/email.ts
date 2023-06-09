@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import sgMail, { type MailDataRequired } from '@sendgrid/mail'
+import sgMail from '@sendgrid/mail'
+import Mailgun from 'mailgun.js'
+import formData from 'form-data'
 
 function emailTemplate(url: string): any {
   return `<!DOCTYPE html>
@@ -446,11 +448,9 @@ border-left: 20px solid #EEEEEE;
 }
 
 async function sendInvitationEmail(recipient: string, url: string): Promise<void> {
-  const sendGridKey: string = process.env.EMAIL_PROVIDER_API_KEY ?? ''
+  const emailProvider: string = process.env.EMAIL_PROVIDER ?? 'sendgrid'
 
-  sgMail.setApiKey(sendGridKey)
-
-  const msg: MailDataRequired = {
+  const msg = {
     to: recipient,
     from: process.env.EMAIL_PROVIDER_REPLY_EMAIL ?? '',
     subject: 'Invitation to Neptune Connect',
@@ -458,15 +458,31 @@ async function sendInvitationEmail(recipient: string, url: string): Promise<void
     html: emailTemplate(url)
   }
 
-  await sgMail.send(msg)
+  if (emailProvider === 'sendgrid') {
+    const sendGridKey: string = process.env.EMAIL_PROVIDER_API_KEY ?? ''
+    sgMail.setApiKey(sendGridKey)
+    try {
+      await sgMail.send(msg)
+    } catch (error) {
+      throw Error(`${error}`)
+    }
+  } else if (emailProvider === 'mailgun') {
+    const mailGunPrivateKey: string = process.env.EMAIL_PROVIDER_API_KEY ?? ''
+    const mailgun = new Mailgun(formData)
+    const client = mailgun.client({ username: 'api', key: mailGunPrivateKey })
+    const domain = process.env.DOMAIN_NAME ?? ''
+    try {
+      await client.messages.create(domain, msg)
+    } catch (error) {
+      throw Error(`${error}`)
+    }
+  }
 }
 
 async function sendPasswordResetUrl(recipient: string, url: string): Promise<void> {
-  const sendGridKey: string = process.env.EMAIL_PROVIDER_API_KEY ?? ''
+  const emailProvider: string = process.env.EMAIL_PROVIDER ?? 'sendgrid'
 
-  sgMail.setApiKey(sendGridKey)
-
-  const msg: MailDataRequired = {
+  const msg = {
     to: recipient,
     from: process.env.EMAIL_PROVIDER_REPLY_EMAIL ?? '',
     subject: 'Reset Password',
@@ -474,7 +490,25 @@ async function sendPasswordResetUrl(recipient: string, url: string): Promise<voi
     html: forgotPasswordEmailTemplate(url)
   }
 
-  await sgMail.send(msg)
+  if (emailProvider === 'sendgrid') {
+    const sendGridKey: string = process.env.EMAIL_PROVIDER_API_KEY ?? ''
+    sgMail.setApiKey(sendGridKey)
+    try {
+      await sgMail.send(msg)
+    } catch (error) {
+      throw Error(`${error}`)
+    }
+  } else if (emailProvider === 'mailgun') {
+    const mailGunPrivateKey: string = process.env.EMAIL_PROVIDER_API_KEY ?? ''
+    const mailgun = new Mailgun(formData)
+    const client = mailgun.client({ username: 'api', key: mailGunPrivateKey })
+    const domain = process.env.DOMAIN_NAME ?? ''
+    try {
+      await client.messages.create(domain, msg)
+    } catch (error) {
+      throw Error(`${error}`)
+    }
+  }
 }
 
 export default {
