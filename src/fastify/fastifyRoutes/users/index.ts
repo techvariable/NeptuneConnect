@@ -86,7 +86,7 @@ const users: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promis
         user: JSON.stringify({ name: request.user?.name, email: request.user?.email }),
         useremail: user.email,
         details,
-        mode: process.env.MODE || 'prod'
+        mode: process.env.MODE ?? 'prod'
       })
     }
   )
