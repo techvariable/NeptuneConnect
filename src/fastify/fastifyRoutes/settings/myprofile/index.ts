@@ -27,7 +27,7 @@ const myprofile: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Pr
         url: `${process.env.APP_URL}`,
         user: JSON.stringify({ name: request.user?.name, email: request.user?.email }),
         permissions: request.user?.permissions,
-        mode: process.env.MODE
+        mode: process.env.MODE || 'prod'
       })
     }
   )

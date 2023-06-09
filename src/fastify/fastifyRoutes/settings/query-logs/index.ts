@@ -26,7 +26,7 @@ const logs: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promise
         navigators: selectedNavigators,
         user: JSON.stringify({ name: request.user?.name, email: request.user?.email }),
         permissions: request.user?.permissions,
-        mode: process.env.MODE
+        mode: process.env.MODE || 'prod'
       })
     }
   )
