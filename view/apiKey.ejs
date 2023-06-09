@@ -26,16 +26,21 @@
   <body
     class="selection:bg-indigo-200 selection:text-violet-800 relative font-roboto h-screen bg-white"
   >
+    <% if(mode==='demo'){ %>
+    <banner-component></banner-component>
+    <% } %>
     <fluid-container>
       <nav-bar stringifieduser="<%= user %>" imgurl="<%=imgurl%>"></nav-bar>
       <main class="container mx-auto mt-4">
         <div class="w-full md:flex justify-center gap-4">
-          <aside class="w-full md:w-80 md:mb-4" aria-label="Sidebar">
-            <navigators-component
-              navigators="<%=JSON.stringify(navigators) %>"
-              permissions="<%= JSON.stringify(permissions) %>"
-            ></navigators-component>
-          </aside>
+          <aside-container>
+            <aside class="w-full" aria-label="Sidebar">
+              <navigators-component
+                navigators="<%=JSON.stringify(navigators) %>"
+                permissions="<%= JSON.stringify(permissions) %>"
+              ></navigators-component>
+            </aside>
+          </aside-container>
           <div class="flex-grow">
             <h1 class="text-gray-700 font-semibold pb-8">API Keys</h1>
             <side-bar url="<%= url %>" permissions="<%= JSON.stringify(permissions) %>"></side-bar>

@@ -43,7 +43,7 @@
             </p>
           </div>
 
-          <form class="space-y-2" action="/login" name="login-form" method="post">
+          <!-- <form class="space-y-2" action="/login" name="login-form" method="post">
             <% if (error) { %>
             <p class="flex items-center justify-center pb-2 text-red-600 text-center font-semibold">
               <svg
@@ -81,7 +81,14 @@
                 Forgot Password
               </a>
             </div>
-          </form>
+          </form> -->
+          <login-form
+            error="<%=error%>"
+            mode="<%=mode%>"
+            url="<%=url%>"
+            email="<%=email%>"
+            password="<%=password%>"
+          ></login-form>
         </div>
       </section>
     </fluid-container>

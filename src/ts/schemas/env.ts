@@ -15,6 +15,11 @@ export const SEnv = Type.Object({
   EMAIL_PROVIDER: StringEnum(['sendgrid', 'mailgun']),
   EMAIL_PROVIDER_API_KEY: Type.String(),
   EMAIL_PROVIDER_REPLY_EMAIL: Type.String({ format: 'email' }),
+  DOMAIN_NAME: Type.Optional(Type.String()),
+
+  MODE: Type.String(),
+  DEMO_USER_EMAIL: Type.String({ format: 'email' }),
+  DEMO_USER_PASSWORD: Type.String(),
 
   AWS_ACCESS_KEY_ID: Type.Optional(Type.String()),
   AWS_SECRET_ACCESS_KEY: Type.Optional(Type.String()),

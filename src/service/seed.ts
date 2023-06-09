@@ -1,6 +1,6 @@
 import { type FastifyInstance } from 'fastify'
 
-export default async function seedDb (fastify: FastifyInstance): Promise<void> {
+export default async function seedDb(fastify: FastifyInstance): Promise<void> {
   fastify.log.info('Seeding the database')
   const res = await fastify.prisma.user.count()
 
@@ -25,15 +25,15 @@ export default async function seedDb (fastify: FastifyInstance): Promise<void> {
     const defaultPermission = JSON.stringify({
       editor: {
         read: true,
-        write: true,
-        update: true,
-        delete: true
+        write: false,
+        update: false,
+        delete: false
       },
       profile: {
         read: true,
-        write: true,
-        update: true,
-        delete: true
+        write: false,
+        update: false,
+        delete: false
       }
     })
 

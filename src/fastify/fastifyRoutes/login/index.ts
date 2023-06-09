@@ -26,10 +26,16 @@ const login: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
       }
     },
     async function (request, reply) {
-      const error = request.query.error
+      const data = {
+        error: request.query.error,
+        url: '/login',
+        mode: process.env.MODE,
+        email: process.env.DEMO_USER_EMAIL,
+        password: process.env.DEMO_USER_PASSWORD
+      }
       if (request.isAuthenticated()) return await reply.redirect('/')
 
-      return await reply.view('/view/login.ejs', { error })
+      return await reply.view('/view/login.ejs', { ...data })
     }
   )
 }

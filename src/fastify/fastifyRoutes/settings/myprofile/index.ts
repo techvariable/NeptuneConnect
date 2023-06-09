@@ -26,7 +26,8 @@ const myprofile: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Pr
         imgurl: `${process.env.APP_URL}`,
         url: `${process.env.APP_URL}`,
         user: JSON.stringify({ name: request.user?.name, email: request.user?.email }),
-        permissions: request.user?.permissions
+        permissions: request.user?.permissions,
+        mode: process.env.MODE ?? 'prod'
       })
     }
   )
