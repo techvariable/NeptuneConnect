@@ -42,12 +42,18 @@
             </aside>
           </aside-container>
           <div class="flex-grow">
-            <h2 class="pb-6 font-mono text-lg font-bold leading-7 text-gray-600">Profile</h2>
+            <h2 class="pb-1.5 font-mono text-lg font-bold leading-7 text-gray-600">Profile</h2>
             <profile-component
               url="<%= url %>"
               stringifieduser="<%= user %>"
               permissions="<%= JSON.stringify(permissions) %>"
             ></profile-component>
+            <h2 class="pt-2 pb-2 font-mono text-lg font-bold leading-7 text-gray-600">
+              Aggregated Permissions
+            </h2>
+            <permission-table
+              permissionstring="<%= JSON.stringify(permissions) %>"
+            ></permission-table>
           </div>
         </div>
       </div>
