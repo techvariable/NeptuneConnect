@@ -60,16 +60,13 @@ Neptune Connect is a free interactive tool for querying, optimizing, analyzing, 
 Find the data you need in seconds with Neptune Connect’s built-in query editor. With both Table view and JSON view, you can easily play with the data.
 
 #### Powerful Query Builder
-With a powerful query builder, there is no need to write your custom query. With Neptune-Connect you can easily generate queries for performing basic to advanced operations.
+With a powerful query builder, there is no need to write your custom query. With Neptune-Connect you can easily generate queries for performing basic to advanced operations including data editing, inserting, and deleting operations.
 
 #### Generate reports from your data
 Use Neptune-Connect to generate reports in various formats with the data you want in the way you want.
 
 #### Highly-Configurable RBAC
 With a highly-configurable RBAC system, you can control who can do what. Furthermore, with query logs, every query executed in the system is logged.
-
-#### Edit and Insert data with query
-With a powerful way to insert or edit data using the UI, there is no need to update or insert data by manually writing complex queries.
 
 #### Visualize the data
 With a powerful way to visualize the nodes and edges, Neptune Connect helps you to easily understand the relationship between the nodes.
@@ -79,13 +76,14 @@ With a powerful way to visualize the nodes and edges, Neptune Connect helps you 
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgments section. Here are a few examples.
 
 - TypeScript
 - NodeJS
 - Fastify
 - EJS
 - Prisma
+- StencilJS
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -94,14 +92,14 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Neptune Connect can be installed on both a server or your local machine. If you're setting it up on a local server then you need to have a running gremlin database.
+Neptune Connect can be installed on both a server and on your local machine. If you're setting it up on a local server, you must have a running gremlin database.
 
 ### Prerequisites
 
 1. NodeJS 16.x.
 2. NPM
 3. Curl and Wget
-4. AWS Neptine or local gremlin instance 
+4. AWS Neptune or local gremlin instance 
 5. Active internet connection
 
 ### Installation
@@ -112,27 +110,15 @@ To install Neptune Connect on your system, run the following command
 bash <(curl -s https://neptune-cdn.s3.amazonaws.com/install.sh)
 ```
 
-This script mentioned above will automatically run a `.sh` file and download the nexessery files. 
+This script mentioned above will automatically run a `.sh` file and download the necessary files. 
 
 Note: The script will ask some questions to set up Neptune Connect.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- ROADMAP -->
 ## Roadmap
-
-- [ ] Add support for database visualizations
-- [ ] Add support to save queries
-- [ ] Add support for dark mode
 
 See the [open issues](https://github.com/SwapnilTechVariable/NeptuneConnect/issues) for a full list of proposed features (and known issues).
 
