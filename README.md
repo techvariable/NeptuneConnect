@@ -50,7 +50,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Screenshot](https://github.com/techvariable/NeptuneConnect/assets/43804489/91bcff89-f187-49c5-9b47-e42f47ce10c5)
+
 
 Neptune Connect is a free interactive tool for querying, optimizing, analyzing, and visualizing your Gremlin-based graph database data.
 
