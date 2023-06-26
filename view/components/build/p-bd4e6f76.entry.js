@@ -1,2 +1,0 @@
-import{r as e,h as r}from"./p-62aab1e1.js";let o=class{constructor(r){e(this,r);this.width="auto"}render(){return r("textarea",{name:"w3review",rows:3,cols:50,class:`appearance-none block  px-3 py-2 border-2 border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-sm w-${this.width} ${this.addClass}`},r("slot",null))}};export{o as text_field_area};
-//# sourceMappingURL=p-bd4e6f76.entry.js.map
