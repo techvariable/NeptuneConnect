@@ -1,0 +1,2 @@
+import{r as t,h as s}from"./p-584c1979.js";let e=class{constructor(s){t(this,s)}render(){return s("div",{class:"flex items-center"},s("input",{id:this.name,type:"checkbox",name:this.name,class:"focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"}),s("label",{htmlFor:this.name,class:"ml-3 block text-sm font-medium text-gray-700"}," ",this.name))}};export{e as check_box};
+//# sourceMappingURL=p-51580409.entry.js.map
