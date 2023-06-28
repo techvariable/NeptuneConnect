@@ -2,7 +2,7 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/SwapnilTechVariable/NeptuneConnect">
+  <a href="https://github.com/techvariable/NeptuneConnect">
     <img src="https://neptune-cdn.s3.amazonaws.com/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -105,7 +105,7 @@ To install Neptune Connect manually, follow the following steps.
 
 ## Roadmap
 
-See the [open issues](https://github.com/SwapnilTechVariable/NeptuneConnect/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/techvariable/NeptuneConnect/issues) for a full list of proposed features (and known issues).
 
 <!-- LICENSE -->
 ## License
