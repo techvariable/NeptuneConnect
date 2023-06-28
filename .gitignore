@@ -3,6 +3,7 @@
 *.log
 npm-debug.log*
 .env
+secret-key
 
 # Prisma files
 prisma/dev.db
