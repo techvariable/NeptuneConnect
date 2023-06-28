@@ -1,2 +1,0 @@
-import{r as t,h as i}from"./p-584c1979.js";let s=class{constructor(i){t(this,i);this.align="horizontal"}render(){return i("div",{class:this.align==="horizontal"?"inline-block mr-7":"block"},i("div",{class:"flex items-center"},i("input",{id:this.name,name:this.name,type:"radio",class:"focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"}),i("label",{htmlFor:this.name,class:"ml-3 block text-sm font-medium text-gray-700"},this.name)))}};export{s as radio_button};
-//# sourceMappingURL=p-db93a173.entry.js.map
