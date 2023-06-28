@@ -19,61 +19,39 @@
   </p>
 </div>
 
+## Table of Contents
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
-
-
+- [Table of Contents](#table-of-contents)
+- [About The Project](#about-the-project)
+  - [Features](#features)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+    - [Using the installer](#using-the-installer)
+    - [Manually installing](#manually-installing)
+- [Usage](#usage)
+- [Roadmap](#roadmap)
+- [License](#license)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 ![Screenshot](https://github.com/techvariable/NeptuneConnect/assets/43804489/91bcff89-f187-49c5-9b47-e42f47ce10c5)
 
-
 Neptune Connect is a free interactive tool for querying, optimizing, analyzing, and visualizing your Gremlin-based graph database data.
 
 ### Features
 
-#### Effortlessly query your data
-Find the data you need in seconds with Neptune Connect’s built-in query editor. With both Table view and JSON view, you can easily play with the data.
+- **Effortlessly query your data:** Find the data you need within seconds using Neptune Connect's built-in query editor. With both Table view and JSON view options, you can easily work with the data.
 
-#### Powerful Query Builder
-With a powerful query builder, there is no need to write your custom query. With Neptune-Connect you can easily generate queries for performing basic to advanced operations including data editing, inserting, and deleting operations.
+- **Powerful Query Builder:** The powerful query builder eliminates the need to write custom queries. With Neptune Connect, you can easily generate queries for performing basic to advanced operations, including data editing, inserting, and deleting.
 
-#### Generate reports from your data
-Use Neptune-Connect to generate reports in various formats with the data you want in the way you want.
+- **Generate reports from your data:** Utilize Neptune Connect to generate reports in various formats, presenting the data exactly the way you want it.
 
-#### Highly-Configurable RBAC
-With a highly-configurable RBAC system, you can control who can do what. Furthermore, with query logs, every query executed in the system is logged.
+- **Highly-Configurable RBAC:** With a highly-configurable Role-Based Access Control (RBAC) system, you have granular control over user permissions. Additionally, query logs record every executed query within the system.
 
-#### Visualize the data
-With a powerful way to visualize the nodes and edges, Neptune Connect helps you to easily understand the relationship between the nodes.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+- **Data Visualization:** Neptune Connect provides powerful visualization capabilities for nodes and edges, enabling you to easily understand the relationships between different entities.
 
 ### Built With
 
@@ -86,24 +64,22 @@ This section should list any major frameworks/libraries used to bootstrap your p
 - Prisma
 - StencilJS
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Neptune Connect can be installed on both a server and on your local machine. If you're setting it up on a local server, you must have a running gremlin database.
+To use Neptune Connect, you can install it on a server or your local machine. If you choose to set it up on a local server, make sure you have a running Gremlin database.
 
 ### Prerequisites
 
 1. NodeJS 16.x.
 2. NPM
 3. Curl and Wget
-4. AWS Neptune or local gremlin instance 
+4. AWS Neptune or local gremlin instance
 5. Active internet connection
 
 ### Installation
+
+#### Using the installer
 
 To install Neptune Connect on your system, run the following command
 
@@ -111,23 +87,27 @@ To install Neptune Connect on your system, run the following command
 bash <(curl -s https://neptune-cdn.s3.amazonaws.com/install.sh)
 ```
 
-This script mentioned above will automatically run a `.sh` file and download the necessary files. 
+The above script will automatically execute a .sh file and download the necessary files. During the installation process, you will be prompted to provide some configuration settings for Neptune Connect.
 
-Note: The script will ask some questions to set up Neptune Connect.
+#### Manually installing
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+To install Neptune Connect manually, follow the following steps.
 
+- Clone the repository.
+- Install packages using `npm run install`
+- Create `.env` based on `.env.example` file
+- Run `npm run prisma:migrate` to generate SQLite database with all needed tables 
+- Finally run `npm run start` to start the server
 
-<!-- ROADMAP -->
+## Usage
+
+[![Watch the video](https://img.youtube.com/vi/FHqaNuyu0hc/default.jpg)](https://www.youtube.com/watch?v=FHqaNuyu0hc)
+
 ## Roadmap
 
 See the [open issues](https://github.com/SwapnilTechVariable/NeptuneConnect/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 ## License
 
 Distributed under the Server Side Public License. See `LICENSE.md` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
