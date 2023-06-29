@@ -1,2 +1,0 @@
-import{r as t,h as r}from"./p-584c1979.js";let s=class{constructor(r){t(this,r)}render(){return r("h2",{class:"font-sans text-gray-600 hover:text-indigo-800 cursor-pointer transition text-sm capitalize"},r("slot",null))}};export{s as menu_items};
-//# sourceMappingURL=p-4a297e46.entry.js.map

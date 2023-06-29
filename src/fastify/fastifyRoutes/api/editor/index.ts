@@ -16,6 +16,7 @@ import {
   type TRawQueryRequest,
   type TSaveQueryId
 } from '../../../../ts/types/editor.type'
+import { checkIfValidDemoQuery } from '../../../../utils/demo'
 
 const editor: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promise<void> => {
   const NeptuneClient = NeptuneClientPersistent.getInstance()
@@ -72,7 +73,13 @@ const editor: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promi
           request.params.nodeLabel,
           request.body
         )
-
+        if (process.env.MODE === 'demo') {
+          const { isValid, error } = checkIfValidDemoQuery(query)
+          if (!isValid) {
+            await reply.code(400).send({ error })
+            return
+          }
+        }
         const result = await NeptuneClient.query({
           groovy: query,
           parameters: queryParameters
@@ -125,12 +132,18 @@ const editor: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promi
           request.params.nodeLabel,
           request.body
         )
+        if (process.env.MODE === 'demo') {
+          const { isValid, error } = checkIfValidDemoQuery(query)
+          if (!isValid) {
+            await reply.code(400).send({ error })
+            return
+          }
+        }
         return {
           query,
           queryParameters
         }
       } catch (err) {
-        console.log({ err })
         return await reply.code(400).send({ error: errorToObject(err) })
       }
     }
@@ -153,7 +166,13 @@ const editor: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promi
     async function (request, reply) {
       try {
         const { query, parameters } = request.body
-
+        if (process.env.MODE === 'demo') {
+          const { isValid, error } = checkIfValidDemoQuery(query)
+          if (!isValid) {
+            await reply.code(400).send({ error })
+            return
+          }
+        }
         const start = Date.now()
         const result: any = await NeptuneClient.query({
           groovy: query,
