@@ -1,6 +1,6 @@
 import fp from 'fastify-plugin'
 import bcrypt from 'bcrypt'
-import { type User, type Permission } from '@prisma/client'
+import { type User, type Permission, DemoVisitEmail } from '@prisma/client'
 
 import {
   type TDeleteUserRequest,
@@ -11,12 +11,12 @@ import {
 } from '../../ts/types/user.type'
 
 export default fp(async (fastify, opts) => {
-  async function getAllUsers (): Promise<User[]> {
+  async function getAllUsers(): Promise<User[]> {
     const users: User[] = await fastify.prisma.user.findMany({})
     return users
   }
 
-  async function getSpecificUsers (
+  async function getSpecificUsers(
     limit: number,
     offset: number
   ): Promise<{ users: User[], count: number }> {
@@ -32,7 +32,7 @@ export default fp(async (fastify, opts) => {
     }
   }
 
-  async function addNewUser (data: TAddUser): Promise<User> {
+  async function addNewUser(data: TAddUser): Promise<User> {
     const hashPassword: string = bcrypt.hashSync(data.password, 10)
 
     return await fastify.prisma.user.create({
@@ -46,7 +46,7 @@ export default fp(async (fastify, opts) => {
     })
   }
 
-  async function updateUserCredentials (data: TAddUser): Promise<User> {
+  async function updateUserCredentials(data: TAddUser): Promise<User> {
     const hashPassword: string = bcrypt.hashSync(data.password, 10)
 
     return await fastify.prisma.user.update({
@@ -60,7 +60,7 @@ export default fp(async (fastify, opts) => {
     })
   }
 
-  async function updateUserPassword (data: TUpdatePassword): Promise<User> {
+  async function updateUserPassword(data: TUpdatePassword): Promise<User> {
     const hashPassword: string = bcrypt.hashSync(data.password, 10)
 
     return await fastify.prisma.user.update({
@@ -73,7 +73,7 @@ export default fp(async (fastify, opts) => {
     })
   }
 
-  async function isPersistantUser (userId: number): Promise<boolean> {
+  async function isPersistantUser(userId: number): Promise<boolean> {
     const user = await fastify.prisma.user.findUnique({
       select: {
         persistant: true
@@ -87,7 +87,7 @@ export default fp(async (fastify, opts) => {
     return false
   }
 
-  async function deleteUser (data: TDeleteUserRequest): Promise<User> {
+  async function deleteUser(data: TDeleteUserRequest): Promise<User> {
     const deletedUser = await fastify.prisma.user.delete({
       where: {
         id: data.id
@@ -100,7 +100,7 @@ export default fp(async (fastify, opts) => {
     })
     return deletedUser
   }
-  async function findUserByEmailId (email: string): Promise<boolean> {
+  async function findUserByEmailId(email: string): Promise<boolean> {
     const data = await fastify.prisma.user.findUnique({
       where: {
         email
@@ -128,7 +128,7 @@ export default fp(async (fastify, opts) => {
     return false
   }
 
-  async function findUserByEmail (email: string): Promise<TGetUserByEmail | undefined> {
+  async function findUserByEmail(email: string): Promise<TGetUserByEmail | undefined> {
     const data = await fastify.prisma.user.findUnique({
       where: {
         email
@@ -168,7 +168,7 @@ export default fp(async (fastify, opts) => {
     }
   }
 
-  async function findUserByAPIKey (apiKey: string): Promise<{ apiId: number } | null> {
+  async function findUserByAPIKey(apiKey: string): Promise<{ apiId: number } | null> {
     return await fastify.prisma.aPIKey.findUnique({
       where: {
         apiKey
@@ -178,7 +178,7 @@ export default fp(async (fastify, opts) => {
       }
     })
   }
-  async function findUserDetailsByUserId (userId: number): Promise<TGetUserDetails> {
+  async function findUserDetailsByUserId(userId: number): Promise<TGetUserDetails> {
     const user: TGetUserDetails | null = await fastify.prisma.user.findUnique({
       where: {
         id: userId
@@ -186,7 +186,7 @@ export default fp(async (fastify, opts) => {
     })
     return { email: user?.email, name: user?.name }
   }
-  async function findUserByUserId (userId: number): Promise<string | null> {
+  async function findUserByUserId(userId: number): Promise<string | null> {
     const user = await fastify.prisma.user.findUnique({
       where: {
         id: userId
@@ -196,7 +196,7 @@ export default fp(async (fastify, opts) => {
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  async function getRolesWithPermissions (userId: number) {
+  async function getRolesWithPermissions(userId: number) {
     return await fastify.prisma.userRole.findMany({
       where: {
         userId
@@ -205,6 +205,23 @@ export default fp(async (fastify, opts) => {
         permission: true
       }
     })
+  }
+
+  async function findAlreadyVisitedEmailId(email: string) {
+    return await fastify.prisma.demoVisitEmail.findUnique({
+      where: {
+        email
+      }
+    })
+  }
+
+  async function createNewVisitByEmail(email: string) {
+    const data = fastify.prisma.demoVisitEmail.create({
+      data: {
+        email
+      }
+    })
+    return data
   }
 
   fastify.decorate('getAllUsers', getAllUsers)
@@ -220,6 +237,8 @@ export default fp(async (fastify, opts) => {
   fastify.decorate('findUserDetailsByUserId', findUserDetailsByUserId)
   fastify.decorate('getRolesWithPermissions', getRolesWithPermissions)
   fastify.decorate('isPersistantUser', isPersistantUser)
+  fastify.decorate('findAlreadyVisitedEmailId', findAlreadyVisitedEmailId)
+  fastify.decorate('createNewVisitByEmail', createNewVisitByEmail)
 })
 
 declare module 'fastify' {
@@ -237,5 +256,7 @@ declare module 'fastify' {
     deleteUser: (data: TDeleteUserRequest) => Promise<User>
     getRolesWithPermissions: (userId: number) => Promise<Array<{ permission: Permission }>>
     isPersistantUser: (userId: number) => Promise<boolean>
+    findAlreadyVisitedEmailId: (email: string) => Promise<DemoVisitEmail | null>
+    createNewVisitByEmail: (email: string) => Promise<DemoVisitEmail>
   }
 }

@@ -1,7 +1,7 @@
 import { type FastifyInstance } from 'fastify'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-async function findUserByEmail (email: string, fastify: FastifyInstance) {
+async function findUserByEmail(email: string, fastify: FastifyInstance) {
   const data = await fastify.prisma.user.findUnique({
     where: {
       email
@@ -47,7 +47,7 @@ async function findUserByEmail (email: string, fastify: FastifyInstance) {
   }
 }
 
-async function findUserByAPIKey (apiKey: string, fastify: FastifyInstance): Promise<{
+async function findUserByAPIKey(apiKey: string, fastify: FastifyInstance): Promise<{
   userId: number
 } | null> {
   return await fastify.prisma.aPIKey.findUnique({

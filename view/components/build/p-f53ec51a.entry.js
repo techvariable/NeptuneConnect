@@ -1,0 +1,2 @@
+import{r as s,h as r}from"./p-584c1979.js";const t=".sc-aside-container-h{display:block}";let c=class{constructor(r){s(this,r)}render(){return r("div",{class:"w-full md:w-80 md:mb-4 "},r("slot",null))}};c.style=t;export{c as aside_container};
+//# sourceMappingURL=p-f53ec51a.entry.js.map

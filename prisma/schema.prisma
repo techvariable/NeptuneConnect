@@ -16,12 +16,12 @@ model Permission {
 }
 
 model User {
-  id            Int        @id @default(autoincrement())
-  email         String     @unique
-  name          String
-  password      String
-  date          DateTime
-  persistant    Boolean    @default(false)
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  name       String
+  password   String
+  date       DateTime
+  persistant Boolean  @default(false)
 
   keysRel       APIKey[]
   queriesRel    QueryLog[]
@@ -70,10 +70,16 @@ model QueryLog {
 }
 
 model SaveQuery {
-  id              Int      @id @default(autoincrement())
-  queryTitle      String   @default("")
-  queryText       String
-  queryParameter  String   @default("")
-  ownerId         Int
-  user            User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  id             Int    @id @default(autoincrement())
+  queryTitle     String @default("")
+  queryText      String
+  queryParameter String @default("")
+  ownerId        Int
+  user           User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}
+
+model DemoVisitEmail {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  timeOfVisit DateTime @default(now())
 }

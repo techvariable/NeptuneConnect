@@ -343,6 +343,38 @@ const users: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promis
       }
     }
   )
+
+  fastify.post<{
+    Body: TInvitationRequest
+  }>(
+    '/visit',
+    {
+      schema: {
+        tags: ['User'],
+        summary: 'Demo user visit is stored in the db',
+        body: SInvitation
+      }
+    },
+    async function (request, reply) {
+      const email = request.body.email
+
+      try {
+        let emailRegex = new RegExp('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$');
+        if (emailRegex.test(email)) {
+          if (await fastify.findAlreadyVisitedEmailId(email) === null) {
+            const visitedPerson = await fastify.createNewVisitByEmail(email)
+            return visitedPerson
+          }
+          reply.send("This person already visited !")
+        }
+
+        reply.badRequest('The email is not valid !')
+      } catch (error) {
+        fastify.log.error(error)
+        reply.internalServerError('Something went wrong with the server')
+      }
+    }
+  )
 }
 
 export default users
