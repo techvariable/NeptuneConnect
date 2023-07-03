@@ -1,6 +1,6 @@
 import fp from 'fastify-plugin'
 import bcrypt from 'bcrypt'
-import { type User, type Permission, DemoVisitEmail } from '@prisma/client'
+import { type User, type Permission, type DemoVisitEmail } from '@prisma/client'
 
 import {
   type TDeleteUserRequest,
@@ -207,7 +207,7 @@ export default fp(async (fastify, opts) => {
     })
   }
 
-  async function findAlreadyVisitedEmailId(email: string) {
+  async function findAlreadyVisitedEmailId(email: string): Promise<DemoVisitEmail | null> {
     return await fastify.prisma.demoVisitEmail.findUnique({
       where: {
         email
@@ -215,13 +215,13 @@ export default fp(async (fastify, opts) => {
     })
   }
 
-  async function createNewVisitByEmail(email: string) {
+  async function createNewVisitByEmail(email: string): Promise<DemoVisitEmail | null> {
     const data = fastify.prisma.demoVisitEmail.create({
       data: {
         email
       }
     })
-    return data
+    return await data
   }
 
   fastify.decorate('getAllUsers', getAllUsers)

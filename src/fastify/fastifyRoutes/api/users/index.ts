@@ -359,13 +359,13 @@ const users: FastifyPluginAsync = async (fastify: FastifyInstance, opts): Promis
       const email = request.body.email
 
       try {
-        let emailRegex = new RegExp('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$');
+        const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/
         if (emailRegex.test(email)) {
           if (await fastify.findAlreadyVisitedEmailId(email) === null) {
             const visitedPerson = await fastify.createNewVisitByEmail(email)
             return visitedPerson
           }
-          reply.send("This person already visited !")
+          await reply.send('This person already visited !')
         }
 
         reply.badRequest('The email is not valid !')
