@@ -1,2 +1,0 @@
-import{r,h as s}from"./p-584c1979.js";let t=class{constructor(s){r(this,s)}render(){return s("div",{class:"max-w-screen-2xl mx-auto bg-white"},s("slot",null))}};export{t as fluid_container};
-//# sourceMappingURL=p-edf05157.entry.js.map
