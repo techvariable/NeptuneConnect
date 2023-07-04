@@ -36,5 +36,8 @@ export const SEnv = Type.Object({
 
   ADMIN_NAME: Type.String(),
   ADMIN_EMAIL: Type.String(),
-  ADMIN_PASSWORD: Type.String()
+  ADMIN_PASSWORD: Type.String(),
+
+  SWAGGER_ENABLED: Type.String(),
+  SWAGGER_ROUTE: Type.String()
 })
