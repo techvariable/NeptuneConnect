@@ -28,7 +28,7 @@ const login: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     async function (request, reply) {
       const data = {
         error: request.query.error,
-        url: '/login',
+        url: '/',
         mode: process.env.MODE,
         email: process.env.DEMO_USER_EMAIL,
         password: process.env.DEMO_USER_PASSWORD
