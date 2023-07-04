@@ -1,7 +1,7 @@
 {
   "name": "neptune-connect",
-  "version": "0.1.0",
-  "description": "TODO: Add description",
+  "version": "0.3.1",
+  "description": "Neptune Connect is a free interactive tool for querying, optimizing, analyzing, and visualizing your Gremlin-based graph databases.",
   "main": "src/index.ts",
   "scripts": {
     "prisma:migrate": "prisma migrate dev",
@@ -16,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abhishekctv/fastify-boilerplate.git"
+    "url": "git+https://github.com/techvariable/NeptuneConnect.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/abhishekctv/fastify-boilerplate/issues"
+    "url": "https://github.com/techvariable/NeptuneConnect/issues"
   },
-  "homepage": "https://github.com/abhishekctv/fastify-boilerplate#readme",
+  "homepage": "https://github.com/techvariable/NeptuneConnect",
   "dependencies": {
     "@fastify/auth": "^4.2.0",
     "@fastify/autoload": "^5.0.0",
